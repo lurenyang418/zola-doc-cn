@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}">
+        <meta name="author" content="{{ config.extra.author }}">
+        <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+        <link rel="stylesheet" href="{{ get_url(path="site.css") }}"/>
+        <link rel="icon" href="{{ get_url(path="favicon.ico") }}">
+    </head>
+    <body>
+
+        <header>
+            <nav class="{% block extra_nav_class %}container{% endblock extra_nav_class %}">
+                <a class="header__logo white" href="{{ config.base_url }}">Zola</a>
+                <a class="white" href="{{ get_url(path="@/documentation/_index.md") }}" class="nav-link">文档</a>
+                <a class="white" href="{{ get_url(path="@/themes/_index.md") }}" class="nav-link">主题</a>
+                <a class="white" href="https://zola.discourse.group/" class="nav-link">论坛</a>
+                <a class="white" href="https://github.com/getzola/zola" class="nav-link">GitHub</a>
+
+                <div class="search-container">
+                    <input id="search" type="search" placeholder="🔎 搜索">
+
+                    <div class="search-results">
+                        <div class="search-results__items"></div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="content {% block extra_content_class %}{% endblock extra_content_class %}">
+            {% block content %}
+                <div class="hero">
+                    <h1>您的一站式静态网站引擎</h1>
+                    <p class="hero__tagline">
+                        零依赖，单文件
+                    </p>
+                    <a href="{{ get_url(path="@/documentation/_index.md") }}" class="button">起步</a>
+                </div>
+
+                <div class="inverted-colours selling-points">
+                    <div class="selling-points__content container">
+                        <div class="selling-point">
+                            <h2>零依赖</h2>
+                            <p>
+                                只需一个可执行文件，包含 SASS 编译，语法高亮，目录和诸多其他特性（建立开发环境，添加 JS 库等）
+                            </p>
+                        </div>
+
+                        <div class="selling-point">
+                            <h2>超快</h2>
+                            <p>
+                                平均网页生成时间少于1秒 （包含 SASS 编译和语法高亮）
+                            </p>
+                        </div>
+
+                        <div class="selling-point">
+                            <h2>可扩展</h2>
+                            <p>
+                                您的整个网站呈现为静态文件，无需服务器或数据库，即可轻松处理任何类型的流量
+                            </p>
+                        </div>
+
+                        <div class="selling-point">
+                            <h2>易用</h2>
+                            <p>
+                                从 CLI 到模板引擎，一切设计都很直观。多动手实践，具体请查阅<a href="{{ get_url(path="@/documentation/_index.md") }}">文档</a>
+                            </p>
+                        </div>
+
+                        <div class="selling-point">
+                            <h2>灵活</h2>
+                            <p>
+                                为您扫清障碍， 让您更专注于写作内容。TA 可以是一个博客、 知识库、 登录页面或者多者的有机结合
+                            </p>
+                        </div>
+
+                        <div class="selling-point">
+                            <h2>增强型 Markdown</h2>
+                            <p>
+                                开箱即用的 <a href="{{ get_url(path="@/documentation/content/shortcodes.md") }}">shortcodes</a> 和
+                                <a href="{{ get_url(path="@/documentation/content/linking.md") }}">internal links</a> 功能，让您方便写作
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            {% endblock content %}
+        </div>
+        <footer>
+            ©2017-{{ now() | date(format="%Y") }} — <a class="white" href="https://vincentprouillet.com">Vincent Prouillet</a> 和 <a class="white" href="https://github.com/getzola/zola/graphs/contributors">贡献者</a>
+        </footer>
+
+        <script type="text/javascript" src="{{ get_url(path="elasticlunr.min.js") }}"></script>
+        <script type="text/javascript" src="{{ get_url(path="search_index.en.js") }}"></script>
+        <script type="text/javascript" src="{{ get_url(path="search.js") }}"></script>
+    </body>
+</html>
